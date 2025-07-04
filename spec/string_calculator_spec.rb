@@ -19,5 +19,13 @@ RSpec.describe StringCalculator do
     it "returns the sum of multiple numbers separated by commas" do
       expect(StringCalculator.add("1,2,3,4,5")).to eq(15)
     end
+
+    # Test case for Step 3: Handle new lines
+    it "returns the sum of numbers separated by new lines and commas" do
+      expect(StringCalculator.add("1\n2,3")).to eq(6)
+    end
+
+    it "returns the sum of numbers separated by multiple new lines" do
+      expect(StringCalculator.add("1\n2\n3")).to eq(6)
   end
 end
