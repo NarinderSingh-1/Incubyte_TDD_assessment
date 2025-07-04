@@ -10,6 +10,20 @@ class StringCalculator
       delimiter = Regexp.escape(delimiter_section[2])
     end
 
-    numbers.split(/#{delimiter}/).map(&:to_i).sum
+    numbers = numbers.split(/#{delimiter}/).map(&:to_i)
+
+    raise_for_negatives!(numbers)
+
+    numbers.sum
+  end
+
+  private
+
+  def self.raise_for_negatives!(numbers)
+    negatives = numbers.select { |n| n.negative? }
+
+    return if negatives.empty?
+
+    raise ArgumentError, "Negative numbers not allowed: #{negatives.join(', ')}"
   end
 end
