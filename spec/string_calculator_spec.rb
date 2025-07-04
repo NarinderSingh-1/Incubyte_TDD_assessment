@@ -27,5 +27,11 @@ RSpec.describe StringCalculator do
 
     it "returns the sum of numbers separated by multiple new lines" do
       expect(StringCalculator.add("1\n2\n3")).to eq(6)
+    end
+
+    # Test case for Step 4: Custom delimiters
+    it "returns the sum of numbers with a custom single-character delimiter" do
+      expect(StringCalculator.add("//;\n1;2;3")).to eq(6)
+    end
   end
 end
