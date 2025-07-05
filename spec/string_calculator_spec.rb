@@ -63,5 +63,27 @@ RSpec.describe StringCalculator do
     it "does not ignore 1000 itself" do
       expect(StringCalculator.add("1000,5")).to eq(1005)
     end
+
+    # Test case for Step 7: Custom multi-character delimiters
+    it "returns the sum of numbers with a custom multi-character delimiter" do
+      expect(StringCalculator.add("//[***]\n1***2***3")).to eq(6)
+    end
+
+    # Test case for Step 8: Multiple custom multi-character delimiters
+    it "returns the sum of numbers with multiple custom multi-character delimiters" do
+      expect(StringCalculator.add("//[*][%]\n1*2%3")).to eq(6)
+    end
+
+    it "returns the sum of numbers with mixed single and multi-character delimiters" do
+      expect(StringCalculator.add("//[;][***]\n1;2***3")).to eq(6)
+    end
+
+    it "returns the sum with multiple multi-character delimiters" do
+      expect(StringCalculator.add("//[foo][bar]\n1foo2bar3")).to eq(6)
+    end
+
+    it "handles complex delimiters and numbers correctly" do
+      expect(StringCalculator.add("//[del1][del2][del3]\n1del12del23del34")).to eq(10)
+    end
   end
 end
